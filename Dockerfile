@@ -33,6 +33,8 @@ RUN a2ensite default-ssl
 
 RUN a2enmod ssl
 
+RUN a2enmod headers
+
 
 # SQL SERVER
 RUN apt-get update && apt-get install -y apt-transport-https curl &&apt-get install -y gpg && curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg && mv microsoft.gpg /etc/apt/trusted.gpg.d/microsoft.gpg && apt-get update && curl https://packages.microsoft.com/config/debian/9/prod.list | tee /etc/apt/sources.list.d/mssql-tools.list && apt-get update && ACCEPT_EULA=Y apt-get install --yes --assume-yes mssql-tools  && apt-get install -y unixodbc-dev && pecl install sqlsrv-5.2.0 pdo_sqlsrv-5.2.0 && pecl install sqlsrv pdo_sqlsrv
